@@ -8,6 +8,7 @@ import { Protectedroute } from "./modules/auth/components/ProtectedRoute.jsx";
 import { AuthProvider } from "./modules/auth/context/AuthProvider.jsx";
 import { Outlet } from "react-router-dom";
 import { CreateProductPage } from "./modules/products/pages/CreateProductPage.jsx";
+import OrderViewPage from "./modules/orders/pages/OrderViewPage.jsx";
 function App() {
   const routes = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ function App() {
         {
           path: "/admin/orders",
           element: <ListOrdersPage />,
+        },
+        {
+          path: "/admin/orders/view",
+          element: <OrderViewPage/>,
         },
       ],
     },
