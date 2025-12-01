@@ -6,14 +6,9 @@ import { loginUser } from '../services/loginServices';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 function LoginPage() {
-  const {singIn}=useAuth()
+  const {singIn, isAuthenticated}=useAuth()
   const [messageError,setmessageError]= useState('');
-  const { register, handleSubmit, formState: { errors }} = useForm({
-    defaultValues: {
-      userName: "",
-      password: "",
-    },
-  });
+  const { register, handleSubmit, formState: { errors }} = useForm();
 
   const navigate = useNavigate();
 
@@ -73,8 +68,9 @@ function LoginPage() {
         <span></span>
         {messageError&&(
           <span className='text-red-500 '>{messageError}</span>
-        )}
-        <Button weight={"w-full"} type='submit' >Enviar</Button>
+        )
+      }
+        <Button weight={"w-full"} type='submit' >Iniciar Sesion</Button>
        </form>
     </div>
     </div>

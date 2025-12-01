@@ -4,9 +4,9 @@ import { loginUser } from "../services/loginServices";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(Boolean(token));
+    localStorage.clear();
   }, []);
 
   const singOut = () => {

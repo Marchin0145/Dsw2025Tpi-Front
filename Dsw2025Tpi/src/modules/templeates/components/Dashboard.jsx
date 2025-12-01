@@ -88,6 +88,18 @@ export function Dashboard() {
               </NavLink>
             </li>
             <li>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block bg-gray-600 text-white text-xl p-2 rounded-md shadow-md"
+                    : "block bg-gray-200 text-black text-xl p-2 rounded-md shadow-md hover:bg-gray-400 transition-colors duration-300"
+                }
+                >
+                  Registar empleado
+              </NavLink>
+            </li>
+            <li>
               <button
                 onClick={logout}
                 className="block md:hidden bg-gray-200 text-black text-xl p-2 rounded-md shadow-md hover:bg-gray-400 transition-colors duration-300 w-full text-left"

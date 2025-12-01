@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./modules/auth/pages/LoginPage";
+import RegisterPage from "./modules/auth/pages/RegisterPage";
 import ListOrdersPage from "./modules/orders/pages/ListOrdersPage.jsx";
 import { Dashboard } from "./modules/templeates/components/Dashboard.jsx";
 import { HomePage } from "./modules/home/pages/HomePage.jsx";
@@ -8,11 +9,16 @@ import { Protectedroute } from "./modules/auth/components/ProtectedRoute.jsx";
 import { AuthProvider } from "./modules/auth/context/AuthProvider.jsx";
 import { Outlet } from "react-router-dom";
 import { CreateProductPage } from "./modules/products/pages/CreateProductPage.jsx";
+import ProductsPage from "./modules/client/pages/ProductsPage.jsx";
 function App() {
   const routes = createBrowserRouter([
     {
       path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "/signup",
+      element: <RegisterPage />,
     },
     {
       path: "/",
@@ -24,7 +30,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <>Listado de producto</>,
+          element: <ProductsPage />,
         },
         {
           path: "/cart",
