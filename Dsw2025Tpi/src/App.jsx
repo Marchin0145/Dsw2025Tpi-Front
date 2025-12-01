@@ -9,6 +9,7 @@ import { AuthProvider } from "./modules/auth/context/AuthProvider.jsx";
 import { Outlet } from "react-router-dom";
 import { CreateProductPage } from "./modules/products/pages/CreateProductPage.jsx";
 import OrderViewPage from "./modules/orders/pages/OrderViewPage.jsx";
+import DashboardUser from "./modules/templeates/components/DashBoardUser.jsx";
 function App() {
   const routes = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ function App() {
       path: "/",
       element: (
         <>
-          <Outlet />
+          <DashboardUser/>
         </>
       ),
       children: [

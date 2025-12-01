@@ -1,8 +1,8 @@
 import axios, { AxiosHeaders } from "axios";
 export const ListProductsServices = async (
   search = null,
-  page = 1,
-  limit = 20,
+  page = null,
+  limit =null,
   isActive=null
 ) => {
   try {
