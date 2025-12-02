@@ -1,16 +1,11 @@
-import axios from "axios";
+import { instance } from "../../shared/api/axiosInstance.js";
 export const loginUser = async (username, password) => {
   try {
-    const response = await axios.post(
+    const response = await instance.post(
       "/api/auth/login",
       {
         username,
         password,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
 

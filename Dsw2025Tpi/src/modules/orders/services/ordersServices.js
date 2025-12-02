@@ -1,18 +1,13 @@
-import axios from "axios";
+import { instance } from "../../shared/api/axiosInstance.js";
 export const listOrderServices = async (status, page = 1, limit = 10,nameCustomer=null) => {
-  const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("/api/orders", {
+    const response = await instance.get("/api/orders", {
       params: {
         status: status,
         page: page,
         limit: limit,
         nameCustomer: nameCustomer
-      },
-
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      }
     });
     return response.data;
   } catch (error) {
@@ -22,15 +17,11 @@ export const listOrderServices = async (status, page = 1, limit = 10,nameCustome
 };
 
 export const orderByIdServices= async (orderId)=>{
-    const token = localStorage.getItem("token");
     try {
-        const response = await axios.get(`/api/orders/${orderId}`,{
+        const response = await instance.get(`/api/orders/${orderId}`,{
             params:{
                 page:1,
                 limit:1
-            },
-            headers:{
-                Authorization: `Bearer ${token}`,
             }
         });
         return response.data;
@@ -40,19 +31,14 @@ export const orderByIdServices= async (orderId)=>{
     }
 } ;
 export const orderByUserName=async (status, page = 1, limit = 10,userName=null) => {
-  const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("/api/orders", {
+    const response = await instance.get("/api/orders", {
       params: {
         status: status,
         page: page,
         limit: limit,
         userName: userName
-      },
-
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      }
     });
     return response.data;
   } catch (error) {

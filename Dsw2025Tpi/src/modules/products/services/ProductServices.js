@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders } from "axios";
+import { instance } from "../../shared/api/axiosInstance.js";
 export const ListProductsServices = async (
   search = null,
   page = null,
@@ -6,7 +6,7 @@ export const ListProductsServices = async (
   isActive=null
 ) => {
   try {
-    const response = await axios.get(
+    const response = await instance.get(
       `/api/products?page=${page}&limit=${limit}&search=${search ?? ""}&isActive=${isActive ?? ""}`
     );
     return response.data;
@@ -15,15 +15,8 @@ export const ListProductsServices = async (
   }
 };
 export const CreateProductServices = async (product) => {
-  const token=localStorage.getItem("token");
   try {
-
-    const response = await axios.post("/api/products",product,{
-      headers:{
-        'content-Type': "application/json",
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const response = await instance.post("/api/products", product);
     return response.data;
   } catch (error) {
     throw error;
@@ -36,7 +29,7 @@ export const ListProductsByStock= async (
   isActive=null,
 ) => {
   try {
-    const response = await axios.get(
+    const response = await instance.get(
       `/api/products?page=${page}&limit=${limit}&isActive=${isActive ?? ""}&isMostStock=${true ?? ""}`
     );
     return response.data;
@@ -46,14 +39,8 @@ export const ListProductsByStock= async (
 };
 
 export const GetProductByIdServices = async (id) => {
-  const token = localStorage.getItem("token");
   try {
-    const response = await axios.get(`/api/products/${id}`,{
-      headers:{
-        'content-Type': "application/json",
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const response = await instance.get(`/api/products/${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -61,14 +48,8 @@ export const GetProductByIdServices = async (id) => {
 };
 
 export const UpdateProductServices = async (id, product) => {
-  const token = localStorage.getItem("token");
   try {
-    const response = await axios.put(`/api/products/${id}`, product, {
-      headers: {
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const response = await instance.put(`/api/products/${id}`, product);
     return response.data;
   } catch (error) {
     throw error;
@@ -76,13 +57,8 @@ export const UpdateProductServices = async (id, product) => {
 };
 
 export const ChangeProductState = async (id) => {
-  const token = localStorage.getItem("token");
   try {
-    const response = await axios.patch(`/api/products/${id}`, {}, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const response = await instance.patch(`/api/products/${id}`, {});
     return response.data;
   } catch (error) {
     throw error;

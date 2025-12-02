@@ -1,16 +1,10 @@
-import axios from "axios";
+import { instance } from "../../shared/api/axiosInstance.js";
 
 export const registerEmployee = async (userData) => {
   try {
-    const response = await axios.post(
+    const response = await instance.post(
       "/api/auth/Register/Employee",
-      userData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
+      userData
     );
 
     return { data: response.data, error: null };
@@ -21,14 +15,9 @@ export const registerEmployee = async (userData) => {
 
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(
+    const response = await instance.post(
       "/api/auth/Register/Customer",
-      userData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      userData
     );
 
     return { data: response.data, error: null };

@@ -1,28 +1,21 @@
-import axios from "axios";
+import { instance } from "../../../shared/api/axiosInstance.js";
 
 export const getHomeStats = async () => {
-  const token = localStorage.getItem("token");
   try {
     // Get all orders to count them
-    const ordersResponse = await axios.get("/api/orders", {
+    const ordersResponse = await instance.get("/api/orders", {
       params: {
         page: 1,
         limit: 1000
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      }
     });
 
     // Get all products to count them
-    const productsResponse = await axios.get("/api/products", {
+    const productsResponse = await instance.get("/api/products", {
       params: {
         page: 1,
         limit: 1000
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      }
     });
 
     return {
