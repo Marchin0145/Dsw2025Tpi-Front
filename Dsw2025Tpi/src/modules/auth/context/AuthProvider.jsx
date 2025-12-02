@@ -4,9 +4,14 @@ import { loginUser } from "../services/loginServices";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.clear();
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+    setIsLoading(false);
   }, []);
 
   const singOut = () => {
@@ -28,6 +33,7 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        isLoading,
         singIn,
         singOut,
       }}
