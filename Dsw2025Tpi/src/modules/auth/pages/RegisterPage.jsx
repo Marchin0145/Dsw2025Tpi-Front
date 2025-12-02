@@ -32,7 +32,13 @@ function RegisterPage() {
    
     const { data: response, error } = isAdmin ? await registerEmployee(data) : await registerUser(data);
     if (error) {
-      setMessageError(error);
+      console.log('Error completo:', error.response?.data);
+      const errorData = error.response?.data;
+      if (Array.isArray(errorData) && errorData.length > 0) {
+        setMessageError(errorData[0].description);
+      } else {
+        setMessageError(errorData?.message || 'Error al registrar el usuario');
+      }
     } else {
       setMessageError('');
       alert('Usuario registrado exitosamente');

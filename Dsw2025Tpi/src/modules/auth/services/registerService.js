@@ -1,4 +1,5 @@
 import axios from "axios";
+import { data } from "react-router-dom";
 
 export const registerEmployee = async (userData) => {
   try {
@@ -15,14 +16,14 @@ export const registerEmployee = async (userData) => {
 
     return { data: response.data, error: null };
   } catch (error) {
-    return { data: null, error: error.response?.data?.message || error.message || "Error al registrar el usuario" };
+    return {data: null , error : error};
   }
 };
 
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(
-      "/api/auth/Register/Customer",
+      "/api/auth/Register/Customers",
       userData,
       {
         headers: {
@@ -33,6 +34,6 @@ export const registerUser = async (userData) => {
 
     return { data: response.data, error: null };
   } catch (error) {
-    return { data: null, error: error.response?.data?.message || error.message || "Error al registrar el usuario" };
+    return { data: null, error: error};
   }
 };

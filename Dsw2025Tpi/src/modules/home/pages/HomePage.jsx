@@ -15,12 +15,17 @@ const [formData,setFormData]=useState(
 const getStats=async()=>{
     try {
             const response = await getHomeStats()
+            console.log('Response from getHomeStats:', response)
             setFormData({
                 totalProducts:response.productsCount,
                 totalOrders:response.ordersCount,
             })
+            console.log('FormData updated:', {
+                totalProducts:response.productsCount,
+                totalOrders:response.ordersCount,
+            })
         } catch (error) {
-            console.log(error)
+            console.log('Error in getStats:', error)
         }
 }
 
