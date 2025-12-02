@@ -97,14 +97,14 @@ function ProductsPage() {
                     placeholder: "Buscar productos...",
                     value: searchTerm,
                     onChange: handleSearch,
-                    className: "pl-4 pr-10 py-3 w-full text-md border-2 border-gray-300 rounded-lg bg-white shadow-md focus:bg-white focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all duration-200 hover:shadow-lg"
+                    className: "pl-4 pr-10 py-3 w-full text-md border-2 border-teal-300 rounded-xl bg-white shadow-md focus:bg-white focus:ring-2 focus:ring-teal-400 focus:border-teal-400 transition-all duration-200 hover:shadow-lg"
                   }}
                 />
                 <MagnifyingGlassIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
               </div>
               <button 
                 onClick={() => navigate('/cart')}
-                className="flex items-center gap-2 px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-md hover:shadow-lg"
+                className="flex items-center gap-2 px-5 py-2.5 bg-teal-500 text-white border-2 border-teal-500 hover:bg-teal-600 hover:border-teal-600 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 <ShoppingCartIcon className="w-5 h-5" />
                 <span>({productsInCart})</span>
@@ -137,19 +137,19 @@ function ProductsPage() {
             {currentPage > 1 && (
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
+                className="px-5 py-2.5 bg-white border-2 border-teal-500 text-teal-500 hover:bg-teal-50 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 Anterior
               </button>
             )}
 
-            <span className="px-4 py-2 bg-gray-600 text-white rounded-lg">
+            <span className="px-5 py-2.5 bg-teal-500 text-white rounded-xl text-sm font-semibold shadow-sm">
               {currentPage}
             </span>
             {products.length==limit?(
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
+                className="px-5 py-2.5 bg-white border-2 border-teal-500 text-teal-500 hover:bg-teal-50 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 Siguiente
               </button>

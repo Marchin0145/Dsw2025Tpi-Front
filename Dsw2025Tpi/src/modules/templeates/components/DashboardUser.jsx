@@ -116,26 +116,26 @@ function DashboardUser() {
   </Menu>)
 }
   return (
-    <div className="min-h-screen w-full bg-gray-50">
+    <div className="min-h-screen w-full bg-teal-50">
       {/* Header */}
-      <header className="bg-gray-300 shadow-sm border-b border-gray-200">
+      <header className="bg-teal-500 shadow-sm border-b border-teal-600">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-14">
             {/* Left Side - Logo + Navigation */}
             <div className="flex items-center space-x-6">
-              <BuildingStorefrontIcon className="h-8 w-8 text-gray-800" />
+              <BuildingStorefrontIcon className="h-8 w-8 text-white" />
               <nav className="flex items-center space-x-3">
-                <button onClick={()=>{nav('/')}} className={`hidden md:flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
+                <button onClick={()=>{nav('/')}} className={`hidden md:flex items-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
                   isProductsActive 
-                    ? 'text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700' 
-                    : 'text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500'
+                    ? 'text-teal-500 bg-white border-2 border-white hover:bg-gray-50' 
+                    : 'text-white bg-white/20 border-2 border-white/30 hover:bg-white/30'
                 }`}>
                   Productos
                 </button>
-                <button onClick={()=>{nav('/cart')}} className={`hidden md:flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
+                <button onClick={()=>{nav('/cart')}} className={`hidden md:flex items-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
                   isCartActive 
-                    ? 'text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700' 
-                    : 'text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500'
+                    ? 'text-teal-500 bg-white border-2 border-white hover:bg-gray-50' 
+                    : 'text-white bg-white/20 border-2 border-white/30 hover:bg-white/30'
                 }`}>
                   <span>Carrito de compras</span>
                 </button>
@@ -150,19 +150,19 @@ function DashboardUser() {
             <div className="hidden md:flex items-center space-x-3">
               {isAuthenticated ? (
                 <>
-                  <button onClick={() => {nav('/orders')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                  <button onClick={() => {nav('/orders')}} className="text-teal-500 bg-white border-2 border-white hover:bg-gray-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
                     Mis Ordenes
                   </button>
-                  <button onClick={handleSingOut} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                  <button onClick={handleSingOut} className="text-teal-500 bg-white border-2 border-white hover:bg-gray-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
                     Salir
                   </button>
                 </>
               ) : (
                 <>
-                  <button onClick={() => {nav('/login')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                  <button onClick={() => {nav('/login')}} className="text-teal-500 bg-white border-2 border-white hover:bg-gray-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
                     Iniciar Sesión
                   </button>
-                  <button onClick={() => {nav('/signup')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                  <button onClick={() => {nav('/signup')}} className="text-teal-500 bg-white border-2 border-white hover:bg-gray-50 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
                     Registrarse
                   </button>
                 </>

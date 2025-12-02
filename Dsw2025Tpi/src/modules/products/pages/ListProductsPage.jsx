@@ -47,20 +47,20 @@ export function ListProductsPage() {
         <Card className="flex flex-col gap-3 w-full">
           <div className="flex  justify-between">
             <p className="text-xl">Productos</p>
-            <Button onClick={()=>{nav('/admin/products/create')}} style="p-1 rounded-xl sm:hidden ">
+            <Button onClick={()=>{nav('/admin/products/create')}} style="p-2 rounded-xl sm:hidden bg-teal-500 hover:bg-teal-600 text-white">
               <PlusIcon className="h-5 w-5" />
             </Button>
-            <Button style="hidden sm:block" onClick={()=>{nav("/admin/products/create")}}>Crear Producto</Button>
+            <Button className="hidden sm:block" style="bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md" onClick={()=>{nav("/admin/products/create")}} > Crear Producto </Button>
           </div>
           <div className="flex flex-col sm:flex-row  gap-2">
             <div className="flex items-center gap-2">
-              <input type="text" onChange={(e)=>setSearchTerm(e.target.value)} placeholder="Buscar" className="flex-1" />
-              <Button onClick={null} style="p-1 rounded-xl">
+              <input type="text" onChange={(e)=>setSearchTerm(e.target.value)} placeholder="Buscar" className="flex-1 px-4 py-2 border border-teal-300 rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-teal-400" />
+              <Button onClick={null} style="p-2 rounded-xl bg-teal-500 hover:bg-teal-600 text-white">
                 <MagnifyingGlassIcon className="h-5 w-5" />
               </Button>
             </div>
 
-            <select onChange={handleChange}>
+            <select onChange={handleChange} className="px-4 py-2 border border-teal-300 rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-teal-400 bg-white">
               <option value="all">Todos</option>
               <option value="enabled">Habilitados</option>
               <option value="disabled">Inhabilitados</option>
@@ -91,17 +91,17 @@ export function ListProductsPage() {
                     <div className="flex flex-col gap-2">
                       <Button 
                       onClick={() => nav(`/admin/products/edit/${product.id}`)}
-                      style="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 text-white"
+                      style="px-3 py-2 text-sm bg-teal-500 hover:bg-teal-600 text-white rounded-xl"
                     >
                       <PencilIcon className="h-4 w-4 sm:hidden" />
-                      <span className="hidden sm:inline text-black">Modificar</span>
+                      <span className="hidden sm:inline">Modificar</span>
                     </Button>
                     <Button 
                       onClick={() => handleToggleProductState(product.id)}
-                      style={`px-3 py-1 text-sm ${
+                      style={`px-3 py-2 text-sm rounded-xl ${
                         product.isActive 
-                          ? 'bg-red-400 hover:bg-red-600 text-white' 
-                          : 'bg-green-400 hover:bg-green-600 text-white'
+                          ? 'bg-red-500 hover:bg-red-600 text-white' 
+                          : 'bg-green-500 hover:bg-green-600 text-white'
                       }`}
                     >
                       {product.isActive ? 'Deshabilitar' : 'Habilitar'}
@@ -120,7 +120,7 @@ export function ListProductsPage() {
         )}
         <div className="flex justify-center gap-2">
           <Button onClick={()=>{setPage(page==1?1:page-1)}}><ArrowLeftIcon className="h-4 w-4"/></Button>
-          <p className="bg-gray-300 text-xl px-2 py-1 rounded-xl shadow-xl">{page}</p>
+          <p className="bg-teal-500 text-white text-xl px-4 py-2 rounded-xl shadow-xl font-semibold">{page}</p>
           <Button onClick={()=>{formData.length==limit?setPage(page+1):null}}><ArrowRightIcon  className="h-4 w-4"/></Button>
         </div>
       </div>
