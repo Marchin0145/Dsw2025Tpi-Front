@@ -125,14 +125,14 @@ function DashboardUser() {
             <div className="flex items-center space-x-6">
               <BuildingStorefrontIcon className="h-8 w-8 text-gray-800" />
               <nav className="flex items-center space-x-3">
-                <button onClick={()=>{nav('/')}} className={`md:block  sm:hidden flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
+                <button onClick={()=>{nav('/')}} className={`hidden md:flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
                   isProductsActive 
                     ? 'text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700' 
                     : 'text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500'
                 }`}>
                   Productos
                 </button>
-                <button onClick={()=>{nav('/cart')}} className={`md:block  sm:hidden flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
+                <button onClick={()=>{nav('/cart')}} className={`hidden md:flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
                   isCartActive 
                     ? 'text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700' 
                     : 'text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500'
@@ -143,19 +143,30 @@ function DashboardUser() {
             </div>
 
             {/* Right Side - Auth Buttons */}
-              <div className="md:hidden sm:block">
+              <div className="md:hidden">
                   <DropdownMenu />
               </div>
             
-            <div className="md:block sm:hidden flex items-center space-x-3">
-              <button onClick={() => {nav('/login')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
-                Iniciar Sesión
-              </button>
-              <button onClick={() => {nav('/signup')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
-                Registrarse
-              </button>
-            
-         
+            <div className="hidden md:flex items-center space-x-3">
+              {isAuthenticated ? (
+                <>
+                  <button onClick={() => {nav('/orders')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                    Mis Ordenes
+                  </button>
+                  <button onClick={handleSingOut} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                    Salir
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => {nav('/login')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                    Iniciar Sesión
+                  </button>
+                  <button onClick={() => {nav('/signup')}} className="text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md">
+                    Registrarse
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

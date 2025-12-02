@@ -117,10 +117,15 @@ const DropdownMenu=()=>{
             {location.pathname == "/admin/products/create" && "Crear Producto"}
           </h2>
           <div className="flex flex-row gap-2">
-
-          <div className="block md:hidden w-fit h-fit">
-            <DropdownMenu/>
-          </div>
+            <button 
+              onClick={logout}
+              className="hidden md:block bg-gray-200 text-black px-4 py-2 rounded-md shadow-md hover:bg-gray-400 transition-colors duration-300"
+            >
+              Cerrar Sesión
+            </button>
+            <div className="block md:hidden w-fit h-fit">
+              <DropdownMenu/>
+            </div>
           </div>
          
         </div>
@@ -177,6 +182,7 @@ const DropdownMenu=()=>{
                   Registar empleado
               </NavLink>
             </li>
+
 
           </ul>
         </aside>
