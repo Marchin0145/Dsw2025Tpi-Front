@@ -4,17 +4,12 @@ import { Button } from '../../shared/components/Button';
 import { useState } from 'react';
 import { loginUser } from '../services/loginServices';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import { useAuth } from '../context/AuthProvider.jsx';
 function LoginPage() {
-  const {singIn}=useAuth()
+  const {singIn, isAuthenticated}=useAuth()
   const [messageError,setmessageError]= useState('');
-  const { register, handleSubmit, formState: { errors }} = useForm({
-    defaultValues: {
-      userName: "",
-      password: "",
-    },
-  });
-
+  const { register, handleSubmit, formState: { errors }} = useForm();
+  const isAdmin = location.pathname.includes('/admin');
   const navigate = useNavigate();
 
   const onValid = async (formData) => {
@@ -23,30 +18,14 @@ function LoginPage() {
     setmessageError(error);
    }else{
     setmessageError('');
-    navigate('/admin/home');
+    navigate(isAdmin?'/admin/home':-1);
    }
   };
 
   const onInvalid = (errors) => {
     console.log("errors", errors);
   };
- const handleProduct = async () => {
-    const response = await fetch('api/products', {
-      method: 'GET',
-      headers: {
-        'content-Type': 'application/json'
-      }
-    });
-    
-    if (!response.ok) {
-      alert('error');
-      return;
-    } else {
-      const data = await response.json();
-      alert(JSON.stringify(data));
-    }
-  }
-
+ 
   return (
     <div className='h-screen flex items-center justify-center'>
     <div className='w-100 bg-white p-6 shadow-lg rounded-md border-2 border-gray-100'>
@@ -73,8 +52,13 @@ function LoginPage() {
         <span></span>
         {messageError&&(
           <span className='text-red-500 '>{messageError}</span>
-        )}
-        <Button weight={"w-full"} type='submit' >Enviar</Button>
+        )
+      }
+        <Button weight={"w-full"} type='submit' >Iniciar Sesion</Button>
+        {!isAdmin&&(<><Button weight={"w-full"} onClick={()=>navigate('/signup')} >Registrarse</Button>
+      <Button weight={"w-full"} onClick={()=>navigate(-1)} >Volver</Button>  
+      </> )
+        }
        </form>
     </div>
     </div>

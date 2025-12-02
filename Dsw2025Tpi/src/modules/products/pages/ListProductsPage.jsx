@@ -1,15 +1,15 @@
 import Card from "../../shared/components/Card";
-import { MagnifyingGlassIcon,PlusIcon,ArrowLeftIcon,ArrowRightIcon  } from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon,PlusIcon,ArrowLeftIcon,ArrowRightIcon,PencilIcon  } from "@heroicons/react/20/solid";
 import { Button } from "../../shared/components/Button";
 import { useState, useEffect } from "react";
-import { ListProductsServices } from "../services/ProductServices";
+import { ListProductsServices, ChangeProductState } from "../services/ProductServices";
 import { useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
 export function ListProductsPage() {
   const [formData, setFormData] = useState([])
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [stateProduct,setStateProduct]=useState(null);
+  const limit = 20;
   const nav=useNavigate();
   useEffect(() => {
     getProducts()
@@ -29,8 +29,17 @@ export function ListProductsPage() {
   }
   
   const getProducts = async () => {
-    const products = await ListProductsServices(searchTerm,page,20,stateProduct)
+    const products = await ListProductsServices(searchTerm,page,limit,stateProduct)
     setFormData(products)
+  }
+
+  const handleToggleProductState = async (productId) => {
+    try {
+      await ChangeProductState(productId)
+      await getProducts()
+    } catch (error) {
+      console.error('Error Cambiando el usuario', error)
+    }
   }
   return (
     <>
@@ -76,7 +85,30 @@ export function ListProductsPage() {
                     <p className="text-sm text-gray-500">SKU: {product.sku}</p>
                     <p className="text-sm text-gray-500">Stock: {product.stockQuantity}</p>
                   </div>
-                  <p className="text-xl font-bold text-gray-600">${product.currentUnitPrice}</p>
+                  <div className="flex items-center gap-3">
+                    <p className="text-xl font-bold text-gray-600">${product.currentUnitPrice}</p>
+                   
+                    <div className="flex flex-col gap-2">
+                      <Button 
+                      onClick={() => nav(`/admin/products/edit/${product.id}`)}
+                      style="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 text-white"
+                    >
+                      <PencilIcon className="h-4 w-4 sm:hidden" />
+                      <span className="hidden sm:inline text-black">Modificar</span>
+                    </Button>
+                    <Button 
+                      onClick={() => handleToggleProductState(product.id)}
+                      style={`px-3 py-1 text-sm ${
+                        product.isActive 
+                          ? 'bg-red-400 hover:bg-red-600 text-white' 
+                          : 'bg-green-400 hover:bg-green-600 text-white'
+                      }`}
+                    >
+                      {product.isActive ? 'Deshabilitar' : 'Habilitar'}
+                    </Button>
+                    </div>
+                    
+                  </div>
                 </div>
               </Card>
             ))}
@@ -89,7 +121,7 @@ export function ListProductsPage() {
         <div className="flex justify-center gap-2">
           <Button onClick={()=>{setPage(page==1?1:page-1)}}><ArrowLeftIcon className="h-4 w-4"/></Button>
           <p className="bg-gray-300 text-xl px-2 py-1 rounded-xl shadow-xl">{page}</p>
-          <Button onClick={()=>{setPage(page+1)}}><ArrowRightIcon  className="h-4 w-4"/></Button>
+          <Button onClick={()=>{formData.length==limit?setPage(page+1):null}}><ArrowRightIcon  className="h-4 w-4"/></Button>
         </div>
       </div>
     </>

@@ -39,3 +39,25 @@ export const orderByIdServices= async (orderId)=>{
         throw error;
     }
 } ;
+export const orderByUserName=async (status, page = 1, limit = 10,userName=null) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get("/api/orders", {
+      params: {
+        status: status,
+        page: page,
+        limit: limit,
+        userName: userName
+      },
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+

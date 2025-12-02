@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
     "axios": "^1.13.2",
+    "headlessui": "^0.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.65.0",
