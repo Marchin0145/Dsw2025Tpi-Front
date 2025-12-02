@@ -2,9 +2,11 @@ import Card from "../../shared/components/Card";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
+  EyeIcon,
 } from "@heroicons/react/20/solid";
 import { Button } from "../../shared/components/Button";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   orderByUserName,
 } from "../../orders/services/ordersServices";
@@ -12,6 +14,7 @@ import { parsearFechaAR } from "../../orders/helpers/ordersHelper";
 
 function OrdersPage() {
   const userName= localStorage.getItem('user')|null;
+  const navigate = useNavigate();
   const [formData, setFormData] = useState([]);
   const [page, setPage] = useState(1);
   const [stateOrders, setStateOrders] = useState("all");
@@ -59,7 +62,8 @@ function OrdersPage() {
           <div className="flex-1 flex flex-col gap-3 overflow-y-auto">
             {formData.map((order) => (
               <Card key={order.id} className="p-4">
-                <div className="flex justify-between items-start mb-3">
+                <div className="flex flex-column justify-between items-start mb-3">
+
                   <div className="flex items-center gap-3">
                     <h3 className="font-semibold text-lg">
                       Orden #{order.id.slice(0, 8)}
@@ -82,14 +86,22 @@ function OrdersPage() {
                       {order.status === "Pending" ? "Pendiente" : order.status}
                     </span>
                   </div>
+                     <Button
+                        onClick={() => navigate('/orders/view', { state: { orderId: order.id } })}
+                        className="mt-2 flex items-center gap-1 text-sm px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-md hover:shadow-lg"
+                      >
+                        Ver
+                      </Button>
                 </div>
                 
                 <div className="space-y-2">
                   <p className="text-gray-700"><span className="font-medium">Fecha:</span> {parsearFechaAR(order.date)}</p>
                   <div className="flex justify-between items-center pt-2 border-t border-gray-100">
-                    <p className="text-sm text-gray-500">
-                      {order.orderItems ? `${order.orderItems.length} producto${order.orderItems.length !== 1 ? 's' : ''}` : 'Sin productos'}
-                    </p>
+                    <div>
+                      <p className="text-sm text-gray-500">
+                        {order.orderItems ? `${order.orderItems.length} producto${order.orderItems.length !== 1 ? 's' : ''}` : 'Sin productos'}
+                      </p>
+                    </div>
                     <p className="text-xl font-bold text-green-600">${order.totalAmount}</p>
                   </div>
                 </div>

@@ -41,7 +41,10 @@ function OrderViewPage() {
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Orden #{order.id}</h1>
           <Button
-            onClick={() => nav("/admin/orders")}
+            onClick={() => {
+              const isAdmin = window.location.pathname.includes('/admin/');
+              nav(isAdmin ? "/admin/orders" : "/orders");
+            }}
             style="flex items-center gap-2"
           >
             <ArrowLeftIcon className="h-4 w-4" />

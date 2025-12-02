@@ -44,6 +44,10 @@ function App() {
           path: "/orders",
           element: <OrdersPage/>,
         },
+        {
+          path: "/orders/view",
+          element: <OrderViewPage/>,
+        },
       ],
     },
       {
