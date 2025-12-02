@@ -54,7 +54,7 @@ function ListOrdersPage() {
                 type="text"
                 onChange={(e) =>{ setSearchTerm(e.target.value); setPage(1)}}
                 placeholder="Buscar"
-                className="flex-1"
+                className="flex-1 px-4 py-2 border border-teal-300 rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-teal-400"
               />
              
             </div>
@@ -63,6 +63,7 @@ function ListOrdersPage() {
               onChange={(e) => {
                 setStateOrders(e.target.value);
               }}
+              className="px-4 py-2 border border-teal-300 rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-teal-400 bg-white"
             >
               <option value="all">Todos</option>
               <option value="Pending">Pendientes</option>
@@ -101,7 +102,7 @@ function ListOrdersPage() {
                     </span>
                   </div>
                   <Button
-                    style={"px-4 py-2 text-sm"}
+                    style={"px-4 py-2 text-sm bg-white hover:bg-teal-50 text-teal-600 border-2 border-teal-500 hover:border-teal-600 rounded-xl"}
                     onClick={() => {
                       nav("/admin/orders/view", {
                         state: {
@@ -140,7 +141,7 @@ function ListOrdersPage() {
           >
             <ArrowLeftIcon className="h-4 w-4" />
           </Button>
-          <p className="bg-gray-300 text-xl px-2 py-1 rounded-xl shadow-xl">
+          <p className="bg-teal-500 text-white text-xl px-4 py-2 rounded-xl shadow-xl font-semibold">
             {page}
           </p>
           <Button

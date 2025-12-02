@@ -27,9 +27,9 @@ function LoginPage() {
   };
  
   return (
-    <div className='h-screen flex items-center justify-center'>
-    <div className='w-100 bg-white p-6 shadow-lg rounded-md border-2 border-gray-100'>
-      <h1 className='text-3xl font-bold text-center'>Inicio de sesion</h1>
+    <div className='min-h-screen bg-teal-50 flex items-center justify-center p-6'>
+    <div className='w-full max-w-md bg-white/90 backdrop-blur-sm p-8 shadow-xl rounded-xl border-0'>
+      <h1 className='text-3xl font-bold text-center text-gray-800 mb-6'>Inicio de sesión</h1>
       <form className='flex flex-col gap-4'onSubmit={handleSubmit(onValid)}>
         <Input
           label={"Nombre"}
@@ -54,9 +54,9 @@ function LoginPage() {
           <span className='text-red-500 '>{messageError}</span>
         )
       }
-        <Button weight={"w-full"} type='submit' >Iniciar Sesion</Button>
-        {!isAdmin&&(<><Button weight={"w-full"} onClick={()=>navigate('/signup')} >Registrarse</Button>
-      <Button weight={"w-full"} onClick={()=>navigate(-1)} >Volver</Button>  
+        <Button weight={"w-full"} type='submit' style="bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md">Iniciar Sesión</Button>
+        {!isAdmin&&(<><Button weight={"w-full"} onClick={()=>navigate('/signup')} style="bg-white hover:bg-teal-50 text-teal-500 border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md mt-3">Registrarse</Button>
+      <Button weight={"w-full"} onClick={()=>navigate(-1)} style="bg-gray-500 hover:bg-gray-600 text-white border-2 border-gray-500 hover:border-gray-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md mt-3">Volver</Button>  
       </> )
         }
        </form>

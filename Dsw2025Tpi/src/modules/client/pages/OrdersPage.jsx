@@ -3,6 +3,13 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   EyeIcon,
+  ShoppingBagIcon,
+  CalendarIcon,
+  CurrencyDollarIcon,
+  ClockIcon,
+  CheckCircleIcon,
+  TruckIcon,
+  XCircleIcon,
 } from "@heroicons/react/20/solid";
 import { Button } from "../../shared/components/Button";
 import { useState, useEffect } from "react";
@@ -35,105 +42,155 @@ function OrdersPage() {
     } catch (error) {}
   };
 
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case "Delivered": return <CheckCircleIcon className="h-5 w-5 text-green-600" />;
+      case "Shipped": return <TruckIcon className="h-5 w-5 text-blue-600" />;
+      case "Processing": return <ClockIcon className="h-5 w-5 text-yellow-600" />;
+      case "Cancelled": return <XCircleIcon className="h-5 w-5 text-red-600" />;
+      default: return <ClockIcon className="h-5 w-5 text-orange-600" />;
+    }
+  };
+
+  const getStatusText = (status) => {
+    switch (status) {
+      case "Pending": return "Pendiente";
+      case "Processing": return "Procesando";
+      case "Shipped": return "Enviado";
+      case "Delivered": return "Entregado";
+      case "Cancelled": return "Cancelado";
+      default: return status;
+    }
+  };
+
   return (
-    <>
-      <div className="flex flex-col gap-4 h-full">
-        <Card className="flex flex-col gap-3 w-full">
-          <div className="flex justify-between">
-            <p className="text-xl">Mis Órdenes</p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2">
-           
+    <div className="min-h-screen bg-teal-50 p-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center gap-3">
+            <ShoppingBagIcon className="h-10 w-10 text-green-600" />
+            Mis Órdenes
+          </h1>
+          <p className="text-gray-600">Gestiona y revisa todas tus compras</p>
+        </div>
+
+        {/* Filters */}
+        <Card className="mb-6 p-6 bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-xl">
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <label className="text-sm font-medium text-gray-700">Filtrar por estado:</label>
             <select
-              onChange={(e) => {
-                setStateOrders(e.target.value);
-              }}
+              value={stateOrders}
+              onChange={(e) => setStateOrders(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white shadow-sm"
             >
-              <option value="all">Todos</option>
+              <option value="all">Todos los estados</option>
               <option value="Pending">Pendientes</option>
-              <option value="Processing">Procesados</option>
+              <option value="Processing">Procesando</option>
               <option value="Shipped">Enviados</option>
               <option value="Delivered">Entregados</option>
               <option value="Cancelled">Cancelados</option>
             </select>
           </div>
         </Card>
-        {formData.length ? (
-          <div className="flex-1 flex flex-col gap-3 overflow-y-auto">
-            {formData.map((order) => (
-              <Card key={order.id} className="p-4">
-                <div className="flex flex-column justify-between items-start mb-3">
 
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-semibold text-lg">
-                      Orden #{order.id.slice(0, 8)}
-                    </h3>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        order.status === "Delivered"
-                          ? "bg-green-100 text-green-800"
-                          : order.status === "Shipped"
-                          ? "bg-blue-100 text-blue-800"
-                          : order.status === "Processing"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : order.status === "Cancelled"
-                          ? "bg-red-100 text-red-800"
-                          : order.status === "Pending"
-                          ? "bg-orange-100 text-orange-800"
-                          : "bg-gray-100 text-gray-800"
-                      }`}
+        {/* Orders Grid */}
+        {formData.length ? (
+          <div className="grid gap-6 mb-8">
+            {formData.map((order) => (
+              <Card key={order.id} className="p-0 bg-white/90 backdrop-blur-sm border-0 shadow-xl transition-all duration-300 overflow-hidden rounded-xl">
+                <div className="bg-teal-500 p-4 text-white rounded-xl">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-white/20 p-2 rounded-xl">
+                        <ShoppingBagIcon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold">
+                          Orden #{order.id.slice(0, 8)}
+                        </h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          {getStatusIcon(order.status)}
+                          <span className="text-sm font-medium">
+                            {getStatusText(order.status)}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <Button
+                      onClick={() => navigate('/orders/view', { state: { orderId: order.id } })}
+                      style="bg-white hover:bg-gray-50 text-black border border-gray-300 px-6 py-2 rounded-xl transition-all duration-200 font-medium"
                     >
-                      {order.status === "Pending" ? "Pendiente" : order.status}
-                    </span>
+                      Ver Detalles
+                    </Button>
                   </div>
-                     <Button
-                        onClick={() => navigate('/orders/view', { state: { orderId: order.id } })}
-                        className="mt-2 flex items-center gap-1 text-sm px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-200 shadow-md hover:shadow-lg"
-                      >
-                        Ver
-                      </Button>
                 </div>
                 
-                <div className="space-y-2">
-                  <p className="text-gray-700"><span className="font-medium">Fecha:</span> {parsearFechaAR(order.date)}</p>
-                  <div className="flex justify-between items-center pt-2 border-t border-gray-100">
-                    <div>
-                      <p className="text-sm text-gray-500">
-                        {order.orderItems ? `${order.orderItems.length} producto${order.orderItems.length !== 1 ? 's' : ''}` : 'Sin productos'}
-                      </p>
+                <div className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                      <CalendarIcon className="h-5 w-5 text-gray-500" />
+                      <div>
+                        <p className="text-xs text-gray-500 uppercase tracking-wide">Fecha</p>
+                        <p className="font-semibold text-gray-800">{parsearFechaAR(order.date)}</p>
+                      </div>
                     </div>
-                    <p className="text-xl font-bold text-green-600">${order.totalAmount}</p>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                      <ShoppingBagIcon className="h-5 w-5 text-gray-500" />
+                      <div>
+                        <p className="text-xs text-gray-500 uppercase tracking-wide">Productos</p>
+                        <p className="font-semibold text-gray-800">
+                          {order.orderItems ? `${order.orderItems.length} artículo${order.orderItems.length !== 1 ? 's' : ''}` : 'Sin productos'}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
+                      <CurrencyDollarIcon className="h-5 w-5 text-green-600" />
+                      <div>
+                        <p className="text-xs text-green-600 uppercase tracking-wide font-medium">Total</p>
+                        <p className="text-2xl font-bold text-green-700">${order.totalAmount}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Card>
             ))}
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-center">
-            <p className="text-2xl text-gray-500">No tienes órdenes</p>
-          </div>
+          <Card className="p-12 text-center bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-xl">
+            <ShoppingBagIcon className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-gray-600 mb-2">No tienes órdenes aún</h3>
+            <p className="text-gray-500">¡Comienza a comprar para ver tus órdenes aquí!</p>
+          </Card>
         )}
-        <div className="flex justify-center gap-2">
+
+        {/* Pagination */}
+        <div className="flex justify-center items-center gap-4">
           <Button
-            onClick={() => {
-              setPage(page == 1 ? 1 : page - 1);
-            }}
+            onClick={() => setPage(page === 1 ? 1 : page - 1)}
+            disabled={page === 1}
+            className="flex items-center gap-2 px-6 py-3 bg-white shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 rounded-xl"
           >
             <ArrowLeftIcon className="h-4 w-4" />
+            Anterior
           </Button>
-          <p className="bg-gray-300 text-xl px-2 py-1 rounded-xl shadow-xl">
+          
+          <div className="bg-teal-500 text-white px-6 py-3 rounded-xl font-bold text-lg shadow-lg">
             {page}
-          </p>
+          </div>
+          
           <Button
-            onClick={() => {
-              setPage(page + 1);
-            }}
+            onClick={() => setPage(page + 1)}
+            className="flex items-center gap-2 px-6 py-3 bg-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl"
           >
+            Siguiente
             <ArrowRightIcon className="h-4 w-4" />
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

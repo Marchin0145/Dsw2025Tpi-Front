@@ -47,9 +47,9 @@ function RegisterPage() {
   };
 
   return (
-    <div className='h-screen flex items-center justify-center'>
-      <div className='w-100 bg-white p-6 shadow-lg rounded-md border-2 border-gray-100'>
-        <h1 className='text-3xl font-bold text-center'>{isAdmin ? 'Registro de Empleado' : 'Registro de Usuario'}</h1>
+    <div className='min-h-screen bg-teal-50 flex items-center justify-center p-6'>
+      <div className='w-full max-w-md bg-white/90 backdrop-blur-sm p-8 shadow-xl rounded-xl border-0'>
+        <h1 className='text-3xl font-bold text-center text-gray-800 mb-6'>{isAdmin ? 'Registro de Empleado' : 'Registro de Usuario'}</h1>
         <form className='flex flex-col gap-4' onSubmit={handleSubmit(onValid)}>
           <Input
             label={"Nombre"}
@@ -124,8 +124,8 @@ function RegisterPage() {
           {messageError && (
             <span className='text-red-500'>{messageError}</span>
           )}
-          <Button weight={"w-full"} type='submit'>Registrarse</Button>
-          <Button weight={"w-full"} type="button" onClick={() => navigate(-1)}>Volver</Button>
+          <Button weight={"w-full"} type='submit' style="bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md">Registrarse</Button>
+          <Button weight={"w-full"} type="button" onClick={() => navigate(-1)} style="bg-gray-500 hover:bg-gray-600 text-white border-2 border-gray-500 hover:border-gray-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md mt-3">Volver</Button>
         </form>
       </div>
     </div>
