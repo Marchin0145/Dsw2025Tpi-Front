@@ -96,14 +96,14 @@ function CartPage(){
                                         <div className="flex items-center gap-2">
                                             <Button
                                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                style="px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
+                                                style="px-3 py-1.5"
                                             >
                                                 -
                                             </Button>
                                             <span className="px-3 py-1.5 border-2 border-teal-300 rounded-xl bg-white text-center font-semibold">{item.quantity}</span>
                                             <Button
                                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                style="px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
+                                                style="px-3 py-1.5"
                                             >
                                                 +
                                             </Button>
@@ -112,7 +112,7 @@ function CartPage(){
                                             <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
                                             <Button
                                                 onClick={() => removeFromCart(item.id)}
-                                                style="mt-1 px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white text-sm rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
+                                                style="mt-1 px-3 py-1.5 bg-red-500 hover:bg-red-600 text-sm"
                                             >
                                                 Eliminar
                                             </Button>
@@ -166,10 +166,10 @@ function CartPage(){
                             </div>
                             <Button
                                 type="submit"
-                                style={`w-full px-6 py-3 text-white font-semibold rounded-xl transition-all duration-200 shadow-sm hover:shadow-md ${
+                                style={`w-full bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md ${
                                     cartItems.length === 0 
                                         ? 'bg-gray-400 cursor-not-allowed' 
-                                        : 'bg-teal-500 hover:bg-teal-600 border-2 border-teal-500 hover:border-teal-600'
+                                        : ''
                                 }`}
                                 disabled={cartItems.length === 0}
                             >

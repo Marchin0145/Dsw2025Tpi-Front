@@ -23,7 +23,7 @@ function DashboardUser() {
   return( <Menu>
     {({ open }) => (
       <>
-        <MenuButton className='bg-gray-300 text-black px-4 py-2 rounded'>
+        <MenuButton className='bg-white text-black px-4 py-2 rounded'>
           {open ? '✕' : '☰'}
         </MenuButton>
     <MenuItems className='absolute right-0 mt-4 w-48 p-2 bg-white shadow-lg rounded-md z-50 space-y-2' >
@@ -34,8 +34,8 @@ function DashboardUser() {
             onClick={close}
             className={({ isActive }) =>
               isActive
-                ? "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700"
-                : "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500"
+                ? "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-white bg-teal-500 border-2 border-teal-500 hover:bg-teal-600 hover:border-teal-600"
+                : "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-teal-500 bg-white border-2 border-teal-500 hover:bg-teal-50 hover:border-teal-600"
             }
           >
             Productos
@@ -49,8 +49,8 @@ function DashboardUser() {
             onClick={close}
             className={({ isActive }) =>
               isActive
-                ? "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700"
-                : "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500"
+                ? "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-white bg-teal-500 border-2 border-teal-500 hover:bg-teal-600 hover:border-teal-600"
+                : "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-teal-500 bg-white border-2 border-teal-500 hover:bg-teal-50 hover:border-teal-600"
             }
           >
             <span>Carrito</span>
@@ -66,8 +66,8 @@ function DashboardUser() {
                 onClick={close}
                 className={({ isActive }) =>
                   isActive
-                    ? "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-white bg-gray-600 border-2 border-gray-600 hover:bg-gray-700 hover:border-gray-700"
-                    : "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500"
+                    ? "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-white bg-teal-500 border-2 border-teal-500 hover:bg-teal-600 hover:border-teal-600"
+                    : "flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-teal-500 bg-white border-2 border-teal-500 hover:bg-teal-50 hover:border-teal-600"
                 }
               >
                 <span>Mis Ordenes</span>
@@ -78,7 +78,7 @@ function DashboardUser() {
             {({close}) =>(
               <button
                 onClick={() => {close(); handleSingOut();}}
-                className="w-full flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500"
+                className="w-full flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-teal-500 bg-white border-2 border-teal-500 hover:bg-teal-50 hover:border-teal-600"
               >
                 Salir
               </button>
@@ -91,7 +91,7 @@ function DashboardUser() {
             {({close}) =>(
               <button
                 onClick={() => {close(); nav('/login');}}
-                className="w-full flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500"
+                className="w-full flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-teal-500 bg-white border-2 border-teal-500 hover:bg-teal-50 hover:border-teal-600"
               >
                 Iniciar Sesión
               </button>
@@ -101,7 +101,7 @@ function DashboardUser() {
             {({close}) =>(
               <button
                 onClick={() => {close(); nav('/signup');}}
-                className="w-full flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-gray-700 bg-white border-2 border-gray-400 hover:bg-gray-50 hover:border-gray-500"
+                className="w-full flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md text-teal-500 bg-white border-2 border-teal-500 hover:bg-teal-50 hover:border-teal-600"
               >
                 Registrarse
               </button>

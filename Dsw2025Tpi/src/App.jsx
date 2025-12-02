@@ -4,7 +4,7 @@ import RegisterPage from "./modules/auth/pages/RegisterPage";
 import ListOrdersPage from "./modules/orders/pages/ListOrdersPage.jsx";
 import { Dashboard } from "./modules/templeates/components/Dashboard.jsx";
 import { HomePage } from "./modules/home/pages/HomePage.jsx";
-import { ListProductsPage } from "./modules/products/pages/listProductsPage.jsx";
+import { ListProductsPage } from "./modules/products/pages/ListProductsPage.jsx";
 import { Protectedroute } from "./modules/auth/components/ProtectedRoute.jsx";
 import { AuthProvider } from "./modules/auth/context/AuthProvider.jsx";
 import { CreateProductPage } from "./modules/products/pages/CreateProductPage.jsx";

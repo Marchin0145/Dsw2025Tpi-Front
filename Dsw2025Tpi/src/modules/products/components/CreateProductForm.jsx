@@ -58,8 +58,8 @@ export function CreateProductForm(){
                 </div>
         
                 <div className='flex flex-row justify-end gap-4 '>
-                    <Button type="submit" style={'justify-end w-fit px-10'}>Guardar</Button>
-                     <Button type="button" style={'justify-end w-fit px-10'} onClick={()=>{navigation('/admin/products')}}>Salir</Button>
+                    <Button type="submit" style={'justify-end w-fit px-10 bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md'}>Guardar</Button>
+                     <Button type="button" style={'justify-end w-fit px-10 bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md'} onClick={()=>{navigation('/admin/products')}}>Salir</Button>
                 </div>
             </form>
             {errorBackend && <span className="text-xl text-red-400">{errorBackend}</span>}

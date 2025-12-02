@@ -36,7 +36,7 @@ useEffect(
 )
     return(
         <div className="flex flex-col gap-3">
-            <h1 className="text-3xl font-bold ">Datos</h1>
+            <h1 className="text-3xl font-bold ">Bienvenido</h1>
             <Card className='flex flex-col gap 3 justify-center '>
               <h2 className="text-2xl ">Productos</h2>
               <p className="text-md">Cantidad De Productos#<span>{formData.totalProducts}</span></p>

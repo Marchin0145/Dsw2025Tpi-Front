@@ -171,7 +171,7 @@ function OrdersPage() {
           <Button
             onClick={() => setPage(page === 1 ? 1 : page - 1)}
             disabled={page === 1}
-            className="flex items-center gap-2 px-6 py-3 bg-white shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 rounded-xl"
+            style="flex items-center gap-2 disabled:opacity-50 bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
           >
             <ArrowLeftIcon className="h-4 w-4" />
             Anterior
@@ -183,7 +183,7 @@ function OrdersPage() {
           
           <Button
             onClick={() => setPage(page + 1)}
-            className="flex items-center gap-2 px-6 py-3 bg-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl"
+            style="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
           >
             Siguiente
             <ArrowRightIcon className="h-4 w-4" />

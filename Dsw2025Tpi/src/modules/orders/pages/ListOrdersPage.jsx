@@ -8,10 +8,7 @@ import {
 import { Button } from "../../shared/components/Button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  listOrderServices,
-  
-} from "../services/ordersServices";
+import { listOrderServices } from "../services/ordersServices";
 import { parsearFechaAR } from "../helpers/ordersHelper";
 function ListOrdersPage() {
   const [formData, setFormData] = useState([]);
@@ -20,25 +17,20 @@ function ListOrdersPage() {
   const [stateOrders, setStateOrders] = useState("all");
   const nav = useNavigate();
 
-  
-
   useEffect(() => {
     getOrders();
-  }, [page, stateOrders,searchTerm]);
+  }, [page, stateOrders, searchTerm]);
 
   const getOrders = async () => {
     try {
-    
-        const response = await listOrderServices(
-          stateOrders == "all" ? null : stateOrders,
-          page,
-          10,
-          searchTerm == "" ? null : searchTerm
-        );
-        setFormData(response);
-        console.log(response);
-      
-      
+      const response = await listOrderServices(
+        stateOrders == "all" ? null : stateOrders,
+        page,
+        10,
+        searchTerm == "" ? null : searchTerm
+      );
+      setFormData(response);
+      console.log(response);
     } catch (error) {}
   };
   return (
@@ -52,11 +44,13 @@ function ListOrdersPage() {
             <div className="flex items-center gap-2">
               <input
                 type="text"
-                onChange={(e) =>{ setSearchTerm(e.target.value); setPage(1)}}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setPage(1);
+                }}
                 placeholder="Buscar"
                 className="flex-1 px-4 py-2 border border-teal-300 rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-teal-400"
               />
-             
             </div>
 
             <select
@@ -102,7 +96,9 @@ function ListOrdersPage() {
                     </span>
                   </div>
                   <Button
-                    style={"px-4 py-2 text-sm bg-white hover:bg-teal-50 text-teal-600 border-2 border-teal-500 hover:border-teal-600 rounded-xl"}
+                    style={
+                      "px-4 py-2 text-sm bg-white hover:bg-teal-50 text-teal-600 border-2 border-teal-500 hover:border-teal-600 rounded-xl"
+                    }
                     onClick={() => {
                       nav("/admin/orders/view", {
                         state: {
@@ -114,15 +110,27 @@ function ListOrdersPage() {
                     Ver Detalles
                   </Button>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <p className="text-gray-700"><span className="font-medium">Cliente:</span> {order.nameCustomer}</p>
-                  <p className="text-gray-700"><span className="font-medium">Fecha:</span> {parsearFechaAR(order.date)}</p>
+                  <p className="text-gray-700">
+                    <span className="font-medium">Cliente:</span>{" "}
+                    {order.nameCustomer}
+                  </p>
+                  <p className="text-gray-700">
+                    <span className="font-medium">Fecha:</span>{" "}
+                    {parsearFechaAR(order.date)}
+                  </p>
                   <div className="flex justify-between items-center pt-2 border-t border-gray-100">
                     <p className="text-sm text-gray-500">
-                      {order.orderItems ? `${order.orderItems.length} producto${order.orderItems.length !== 1 ? 's' : ''}` : 'Sin productos'}
+                      {order.orderItems
+                        ? `${order.orderItems.length} producto${
+                            order.orderItems.length !== 1 ? "s" : ""
+                          }`
+                        : "Sin productos"}
                     </p>
-                    <p className="text-xl font-bold text-green-600">${order.totalAmount}</p>
+                    <p className="text-xl font-bold text-green-600">
+                      ${order.totalAmount}
+                    </p>
                   </div>
                 </div>
               </Card>
@@ -135,6 +143,7 @@ function ListOrdersPage() {
         )}
         <div className="flex justify-center gap-2">
           <Button
+            style="bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-3 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
             onClick={() => {
               setPage(page == 1 ? 1 : page - 1);
             }}
@@ -145,6 +154,7 @@ function ListOrdersPage() {
             {page}
           </p>
           <Button
+            style="bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-3 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
             onClick={() => {
               setPage(page + 1);
             }}

@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { orderByIdServices } from "../services/ordersServices";
 import Card from "../../shared/components/Card";
 import { Button } from "../../shared/components/Button";
-import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import { parsearFechaAR } from "../helpers/ordersHelper";
 
 function OrderViewPage() {
@@ -45,9 +44,8 @@ function OrderViewPage() {
               const isAdmin = window.location.pathname.includes('/admin/');
               nav(isAdmin ? "/admin/orders" : "/orders");
             }}
-            style="flex items-center gap-2"
+            style="flex items-center gap-2 bg-teal-500 hover:bg-teal-600 text-white border-2 border-teal-500 hover:border-teal-600 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
           >
-            <ArrowLeftIcon className="h-4 w-4" />
             Volver
           </Button>
         </div>

@@ -24,14 +24,14 @@ function ProductCarousel({ products, onAddCart }) {
       
       <button
         onClick={prevSlide}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-teal-500 rounded-full p-2 shadow-lg hover:bg-teal-600"
       >
         ←
       </button>
       
       <button
         onClick={nextSlide}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2  text-white bg-teal-500  rounded-full p-2 shadow-lg hover:bg-teal-600"
       >
         →
       </button>
@@ -42,7 +42,7 @@ function ProductCarousel({ products, onAddCart }) {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 rounded-full ${
-              index === currentIndex ? 'bg-gray-600' : 'bg-gray-300'
+              index === currentIndex ? 'bg-teal-500' : 'bg-gray-300'
             }`}
           />
         ))}
